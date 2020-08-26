@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name" translatable="false">Mi Primer Proyecto</string>
-    <string name="bienvenida" translatable="false">Bienvenido</string>
-    <string name="entrar_boton" translatable="false">Entrar</string>
+    <string name="app_name">Agenda</string>
+
+    <string name="titulo_activity1">Añadir contacto</string>
+    <string name="boton_sig">Siguiente</string>
+    <string name="text_nombre">Nombre completo</string>
+    <string name="text_fecha">Fecha de nacimiento</string>
+    <string name="text_telefono">Telefono</string>
+    <string name="text_correo">E-mail</string>
+    <string name="text_descripcionc">Descripción Contacto</string>
+
+    <string name="titulo_activity2">Confirmar datos</string>
+    <string name="text_tel">Tel. </string>
+    <string name="text_descripcion">Descripción</string>
+    <string name="boton_edit">Editar datos</string>
+
 </resources>
