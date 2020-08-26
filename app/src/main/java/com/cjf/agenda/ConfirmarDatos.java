@@ -18,15 +18,15 @@ public class ConfirmarDatos extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         textView.setText(nombre);
 
-        String fecha = "Fecha de nacimiento: " + intent.getStringExtra("Fecha");
+        String fecha = intent.getStringExtra("Fecha");
         textView = findViewById(R.id.textView2);
         textView.setText(fecha);
 
-        String telefono = "Tel: " + intent.getStringExtra("Telefono");
+        String telefono =intent.getStringExtra("Telefono");
         textView = findViewById(R.id.textView3);
         textView.setText(telefono);
 
-        String correo = "E-mail: " + intent.getStringExtra("Correo");
+        String correo = intent.getStringExtra("Correo");
         textView = findViewById(R.id.textView4);
         textView.setText(correo);
 
