@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".FivePets">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMascotas2"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="10dp"
+        android:paddingTop="60dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_width="@dimen/flecha_ancho"
+                android:layout_height="@dimen/like_medida"
+                android:background="@drawable/icons8_chevron_left_90"
+                android:gravity="right"
+                android:onClick="bckPrincipal" />
+
+            <ImageView
+                android:id="@+id/pawPet2"
+                android:layout_width="@dimen/like_medida"
+                android:layout_height="@dimen/like_medida"
+                app:srcCompat="@drawable/icons8_dog_paw_64" />
+
+            <TextView
+                android:id="@+id/appNombre"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/like_medida"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/app_name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:fontFamily="sans-serif-condensed-medium" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/icons8_camera_100" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="0dip"
+
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/barra"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMascotas"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="10dp"
+        android:paddingTop="60dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@drawable/icons8_camera_100"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958"
+        app:srcCompat="@drawable/icons8_camera_96" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+
+        app:layout_anchor="@+id/barra"
+        app:layout_anchorGravity="center"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+       <ImageView
+            android:id="@+id/pawPet"
+            android:layout_width="@dimen/like_medida"
+            android:layout_height="@dimen/like_medida"
+            app:srcCompat="@drawable/icons8_dog_paw_64" />
+
+        <TextView
+            android:id="@+id/appNombre"
+            android:layout_width="200dp"
+            android:layout_height="@dimen/like_medida"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:fontFamily="sans-serif-condensed-medium" />
+
+        <Button
+            android:id="@+id/btnStar"
+            android:layout_width="@dimen/like_medida"
+            android:layout_height="@dimen/like_medida"
+            android:background="@drawable/icons8_star_64"
+            android:onClick="cincoMascotas"
+            android:gravity="right" />
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
