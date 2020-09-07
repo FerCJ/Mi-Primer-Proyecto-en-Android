@@ -3,37 +3,48 @@ package com.cjf.mascotaapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cjf.mascotaapp.adaptader.MascotaAdaptador;
+import com.cjf.mascotaapp.fragments.PerfilFragment;
+import com.cjf.mascotaapp.fragments.RecyclerViewFragment;
+import com.cjf.mascotaapp.optionsmenu.ActivityAbout;
+import com.cjf.mascotaapp.optionsmenu.ActivityContacto;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Mascotas> mascotas;
-    private RecyclerView lstMascotas;
+
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.vpPrincipal);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,32 +55,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lstMascotas = (RecyclerView) findViewById(R.id.rvMascotas);
-        lstMascotas.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        setUpViewPager();
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-        lstMascotas.setLayoutManager(llm);
-
-        mascotas = new ArrayList<Mascotas>();
-        mascotas.add(new Mascotas("Chupon",0,R.drawable.pet10));
-        mascotas.add(new Mascotas("Pakkun",0,R.drawable.pet8));
-        mascotas.add(new Mascotas("Asgard",0,R.drawable.pet9));
-        mascotas.add(new Mascotas("Kobak",0,R.drawable.pet7));
-        mascotas.add(new Mascotas("Scarton",0,R.drawable.pet6));
-        mascotas.add(new Mascotas("Cabo",0,R.drawable.pet1));
-        mascotas.add(new Mascotas("Zeus",0,R.drawable.pet5));
-        mascotas.add(new Mascotas("Malak",0,R.drawable.pet3));
-        mascotas.add(new Mascotas("Puppy",0,R.drawable.pet2));
-        mascotas.add(new Mascotas("Mila",0,R.drawable.pet4));
-        inicializarAdaptador();
+        if(toolbar != null)
+        {
+            setSupportActionBar(toolbar);
+        }
     }
 
-    public void inicializarAdaptador()
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+
+        return fragments;
+    }
+    private  void setUpViewPager()
     {
-        MascotaAdaptador adaptador = new MascotaAdaptador(mascotas);
-        lstMascotas.setAdapter(adaptador);
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_perfil);
     }
 
     @Override
@@ -88,8 +96,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId())
+        {
+            case R.id.mContacto:
+                    Intent intent = new Intent(this, ActivityContacto.class);
+                    startActivity(intent);
+                break;
+            case R.id.mAbout:
+                    intent = new Intent(this, ActivityAbout.class);
+                    startActivity(intent);
+                break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -2,6 +2,7 @@ package com.cjf.mascotaapp;
 
 import android.os.Bundle;
 
+import com.cjf.mascotaapp.adaptader.MascotaAdaptador;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

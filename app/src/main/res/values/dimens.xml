@@ -3,6 +3,13 @@
     <dimen name="card_medida">350dp</dimen>
     <dimen name="like_medida">50dp</dimen>
     <dimen name="flecha_ancho">25dp</dimen>
+    <dimen name="mensaje_alto">300dp</dimen>
+    <dimen name="textp_contacto">18sp</dimen>
+    <dimen name="tamanio_perfil">150dp</dimen>
+    <dimen name="card_perfil">100dp</dimen>
+    <dimen name="componentes_perfil">15dp</dimen>
+    <dimen name="fotos_perfil">85dp</dimen>
+
 
 
 </resources>
