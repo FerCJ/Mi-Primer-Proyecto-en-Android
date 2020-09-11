@@ -1,15 +1,27 @@
-package com.cjf.mascotaapp;
+package com.cjf.mascotaapp.pojo;
 
 import android.util.Log;
 
-public class Mascotas {
+public class Mascotas
+{
+    private int id;
     private String nombre;
     private int likes;
     private int foto;
 
+    public Mascotas() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getFoto() {
-        final String TAG = "MyActivity";
-        Log.d(TAG,"Positon antes: " + foto);
         return foto;
     }
 
@@ -22,7 +34,6 @@ public class Mascotas {
         this.nombre = nombre;
         this.likes = likes;
         this.foto = foto;
-
     }
 
     public String getNombre() {

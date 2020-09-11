@@ -12,17 +12,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cjf.mascotaapp.Mascotas;
+import com.cjf.mascotaapp.FivePets;
+import com.cjf.mascotaapp.db.ConstructorMascotas;
+import com.cjf.mascotaapp.pojo.Mascotas;
 import com.cjf.mascotaapp.R;
 
 import java.util.ArrayList;
 
 public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.MascotaViewHolder> {
 
+    private ArrayList<Mascotas> mascotas;
+    public static ArrayList<Mascotas> mascotasFive = new ArrayList<Mascotas>();
+    private int bandera = 0;
+    Context context;
+
+
     public MascotaAdaptador(ArrayList<Mascotas> mascotas)
     {
         this.mascotas = mascotas;
     }
+
 
     public  static class MascotaViewHolder extends RecyclerView.ViewHolder{
          private ImageView   imgPet;
@@ -42,43 +51,110 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         }
     }
 
-    private ArrayList<Mascotas> mascotas;
-    Context context;
+
     @NonNull
     @Override
     public MascotaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_mascota,parent,false);
         context = parent.getContext();
+
         return new MascotaViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MascotaViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final MascotaViewHolder holder, final int position)
     {
             final String TAG = "MyActivity";
-            Log.d(TAG,"Positon antes: " + position);
             final Mascotas mascota = mascotas.get(position);
             holder.tvLike.setText(Integer.toString(mascota.getLikes()));
             holder.imgGLike.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                int likes = mascota.getLikes();
-                likes = likes + 1;
-                mascota.setLikes(likes);
-                holder.tvLike.setText(Integer.toString(mascota.getLikes()));
-            }
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(context);
+                constructorMascotas.darLikeContacto(mascota);
+                int likes = constructorMascotas.obtenerLikesMascota(mascota);
+                holder.tvLike.setText(Integer.toString(likes));
 
+                ArrayList<Mascotas> aux = new ArrayList<Mascotas>();
+
+                if (mascotasFive != null && mascotasFive.size() > 4 )
+                {
+                    int pos2 = -1;
+                    for (int i = 0; i < mascotasFive.size(); i++)
+                    {
+                        if (mascotasFive.get(i).getNombre() == mascota.getNombre())
+                        {
+                            pos2 = i;
+                        }
+                    }
+                    if (pos2 != -1)
+                    {
+                        aux.add(new Mascotas(mascota.getNombre(),likes,mascota.getFoto()));
+                        mascotasFive.remove(pos2);
+                        aux.add(mascotasFive.get(0));
+                        aux.add(mascotasFive.get(1));
+                        aux.add(mascotasFive.get(2));
+                        aux.add(mascotasFive.get(3));
+
+                        mascotasFive = aux;
+                    }
+                    else
+                    {
+                        aux.add(new Mascotas(mascota.getNombre(),likes,mascota.getFoto()));
+                        aux.add(mascotasFive.get(0));
+                        aux.add(mascotasFive.get(1));
+                        aux.add(mascotasFive.get(2));
+                        aux.add(mascotasFive.get(3));
+
+                        mascotasFive = aux;
+                    }
+
+                }
+                else
+                {
+                    int pos = -1;
+                    if (bandera == 0)
+                    {
+
+                        mascotasFive.add(new Mascotas(mascota.getNombre(),likes,mascota.getFoto()));
+                        bandera = 1;
+                    }
+                    else
+                    {
+
+                        for (int i = 0; i < mascotasFive.size(); i++)
+                        {
+                            if (mascotasFive.get(i).getNombre() == mascota.getNombre())
+                            {
+                                pos = i;
+                            }
+                        }
+                        if (pos != -1)
+                        {
+                            mascotasFive.set(pos, new Mascotas(mascota.getNombre(), likes, mascota.getFoto()));
+                        }
+                        else
+                        {
+                            mascotasFive.add(new Mascotas(mascota.getNombre(),likes,mascota.getFoto()));
+                        }
+                    }
+
+                }
+
+            }
         });
         holder.imgPet.setImageResource(mascota.getFoto());
-        //Log.d(TAG,"Numero de imagen: " + mascota.getFoto());
+        //
         holder.imgLikes.setImageResource(R.drawable.icons8_dog_bone_48);
         holder.tvNombre.setText(mascota.getNombre());
+        //sdfsdfs
 
     }
 
     @Override
-    public int getItemCount() {
-        return mascotas.size();
+    public int getItemCount()
+    {
+        return (mascotas == null) ? 0 : mascotas.size();
     }
 
     @Override

@@ -60,7 +60,7 @@ public class PerfilAdaptador extends RecyclerView.Adapter<PerfilAdaptador.Perfil
 
     @Override
     public int getItemCount() {
-        return mascota.size();
+        return (mascota == null) ? 0 : mascota.size();
     }
 
     @Override
