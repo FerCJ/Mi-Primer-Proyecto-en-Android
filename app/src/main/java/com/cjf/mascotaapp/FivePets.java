@@ -3,6 +3,7 @@ package com.cjf.mascotaapp;
 import android.os.Bundle;
 
 import com.cjf.mascotaapp.adaptader.MascotaAdaptador;
+import com.cjf.mascotaapp.pojo.Mascotas;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -16,10 +17,14 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.cjf.mascotaapp.adaptader.MascotaAdaptador.mascotasFive;
+
 public class FivePets extends AppCompatActivity {
 
     ArrayList<Mascotas> mascotas2;
     private RecyclerView lstMascotas2;
+    private MascotaAdaptador mascotaAdaptador;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +49,8 @@ public class FivePets extends AppCompatActivity {
 
         lstMascotas2.setLayoutManager(llm);
 
-        mascotas2 = new ArrayList<Mascotas>();
-        mascotas2.add(new Mascotas("Chupon",15,R.drawable.pet10));
-        mascotas2.add(new Mascotas("Pakkun",13,R.drawable.pet8));
-        mascotas2.add(new Mascotas("Malak",5,R.drawable.pet3));
-        mascotas2.add(new Mascotas("Puppy",6,R.drawable.pet2));
-        mascotas2.add(new Mascotas("Mila",1,R.drawable.pet4));
+        mascotas2 = mascotasFive;
+
         inicializarAdaptador();
     }
 

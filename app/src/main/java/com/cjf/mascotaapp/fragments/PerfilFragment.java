@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,14 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cjf.mascotaapp.MascotaPerfil;
-import com.cjf.mascotaapp.Mascotas;
 import com.cjf.mascotaapp.PerfilAdaptador;
 import com.cjf.mascotaapp.R;
-import com.cjf.mascotaapp.adaptader.MascotaAdaptador;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 public class PerfilFragment extends Fragment {
 
     ArrayList<MascotaPerfil> mascota;
@@ -40,6 +36,14 @@ public class PerfilFragment extends Fragment {
 
         lstFotosPerfil.setLayoutManager(glm);
 
+        inicializarDatos();
+        inicializarAdaptador();
+
+        return v;
+    }
+
+    public void inicializarDatos()
+    {
         mascota = new ArrayList<MascotaPerfil>();
         mascota.add(new MascotaPerfil(10,R.drawable.sncperfil));
         mascota.add(new MascotaPerfil(8,R.drawable.sncperfil));
@@ -51,9 +55,6 @@ public class PerfilFragment extends Fragment {
         mascota.add(new MascotaPerfil(21,R.drawable.sncperfil));
         mascota.add(new MascotaPerfil(54,R.drawable.sncperfil));
 
-        inicializarAdaptador();
-
-        return v;
     }
 
     public void inicializarAdaptador()
